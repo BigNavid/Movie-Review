@@ -1,0 +1,32 @@
+{
+  "name": "movie-review",
+  "version": "1.0.0",
+  "description": "A Letterboxd liked website created by ExpressJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BigNavid/Movie-Review.git"
+  },
+  "author": "BigNavid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BigNavid/Movie-Review/issues"
+  },
+  "homepage": "https://github.com/BigNavid/Movie-Review#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.4",
+    "validator": "^13.12.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
