@@ -21,6 +21,7 @@ app.use(json());
 app.use('/auth', authRoutes);
 app.use('/movie', movieRoutes);
 app.use('/review', reviewRoutes);
+app.use('/friendships', friendshipsRoutes);
 app.use('/pages', pagesRoutes);
 app.use('/public', express.static('public'));
 

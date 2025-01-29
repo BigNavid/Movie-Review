@@ -40,4 +40,14 @@ router.get('/my', verifyToken, async (req, res) => {
     }
 });
 
+router.delete('/:id', verifyToken, async (req, res) => {
+    try {
+        const reviewId = req.params.id;
+        await Review.findByIdAndDelete(reviewId);
+        res.status(200).json({ message: 'Review deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Review deletion failed, ' + error.message });
+    }
+});
+
 export default router;
