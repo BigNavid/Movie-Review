@@ -3,7 +3,7 @@ const router = Router();
 import User from '../models/user.model.js';
 import Movie from '../models/movie.model.js';
 
-router.get('/movies', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const movies = await Movie.find({});
         res.render('index', {
@@ -14,6 +14,12 @@ router.get('/movies', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 
+})
+
+router.get('/login', async (req, res) => {
+    res.render('login', {
+        subject: 'MovieDB - Login'
+    });
 })
 
 router.get('/movie/:id', async (req, res) => {
