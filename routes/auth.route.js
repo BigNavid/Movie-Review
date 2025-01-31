@@ -18,7 +18,8 @@ router.post('/signup', async (req, res) => {
         const hashedPassword = await hash(password, 10);
         const user = new User({ email, password: hashedPassword, role, nickname });
         await user.save();
-        res.status(201).json({ message: 'User registered successfully' });
+        // res.status(201).json({ message: 'User registered successfully' });
+        res.redirect('/pages/login')
     } catch (error) {
         res.status(500).json({ error: 'Registration failed, ' + error.message });
     }
@@ -39,7 +40,9 @@ router.post('/login', async (req, res) => {
         const token = Jsonwebtoken.sign({ userId: user._id }, JWT_SECRET, {
             expiresIn: '3h',
         });
-        res.status(200).json({ token });
+        res.cookie('token',token, { maxAge: 10800000, httpOnly: true });
+        // res.status(200).json({ message: 'cookie set!' });
+        res.redirect('/pages')
     } catch (error) {
         res.status(500).json({ error: 'Login failed' });
     }

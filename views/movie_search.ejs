@@ -9,19 +9,19 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet"> 
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="../public/css/bootstrap-reboot.min.css">
-	<link rel="stylesheet" href="../public/css/bootstrap-grid.min.css">
-	<link rel="stylesheet" href="../public/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="../public/css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="../public/css/nouislider.min.css">
-	<link rel="stylesheet" href="../public/css/ionicons.min.css">
-	<link rel="stylesheet" href="../public/css/plyr.css">
-	<link rel="stylesheet" href="../public/css/photoswipe.css">
-	<link rel="stylesheet" href="../public/css/default-skin.css">
-	<link rel="stylesheet" href="../public/css/main.css">
+	<link rel="stylesheet" href="/public/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="/public/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="/public/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/public/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="/public/css/nouislider.min.css">
+	<link rel="stylesheet" href="/public/css/ionicons.min.css">
+	<link rel="stylesheet" href="/public/css/plyr.css">
+	<link rel="stylesheet" href="/public/css/photoswipe.css">
+	<link rel="stylesheet" href="/public/css/default-skin.css">
+	<link rel="stylesheet" href="/public/css/main.css">
 
 	<title>
-        <%= subject %>
+        <%= subject %> Search
     </title>
 
 </head>
@@ -32,19 +32,19 @@
 	<!-- end header -->
 
 	<!-- page title -->
-	<section class="section section--first section--bg" data-bg="../public/img/section/section.jpg">
+	<section class="section section--first section--bg" data-bg="/public/img/section/section.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="section__wrap">
 						<!-- section title -->
-						<h2 class="section__title">Catalog list</h2>
+						<h2 class="section__title">Catalog grid</h2>
 						<!-- end section title -->
 
 						<!-- breadcrumb -->
 						<ul class="breadcrumb">
 							<li class="breadcrumb__item"><a href="#">Home</a></li>
-							<li class="breadcrumb__item breadcrumb__item--active">Catalog list</li>
+							<li class="breadcrumb__item breadcrumb__item--active">Catalog grid</li>
 						</ul>
 						<!-- end breadcrumb -->
 					</div>
@@ -64,48 +64,29 @@
 			<div class="row">
 				<!-- card -->
                 <% for(var i=0; i<movies.length; i++) {%>
-					<div class="col-6 col-sm-12 col-lg-6">
-						<div class="card card--list">
-							<div class="row">
-								<div class="col-12 col-sm-4">
-									<div class="card__cover">
-										<img src="data:image/jpeg;base64,<%= movies[i].image %>" alt="">
-										<a href="/pages/movie/<%= movies[i].id %>" class="card__play">
-											<i class="icon ion-ios-play"></i>
-										</a>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-8">
-									<div class="card__content">
-										<h3 class="card__title"><a href="/pages/movie/<%= movies[i].id %>"><%= movies[i].name %></a></h3>
-										<span class="card__category">
-											<a href="#"><%= movies[i].genre %></a>
-										</span>
-
-										<div class="card__wrap">
-											<span class="card__rate"><i class="icon ion-ios-star"></i><%= movies[i].users_rating %></span>
-
-											<ul class="card__list">
-												<li>HD</li>
-												<li>16+</li>
-											</ul>
-										</div>
-
-										<div class="card__description">
-											<p><%= movies[i].description %></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				<% } %>
+                    <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                        <div class="card">
+                            <div class="card__cover">
+                                <img src="data:image/jpeg;base64,<%= movies[i].image %>" alt="">
+                                <a href="/pages/movie/<%= movies[i].id %>" class="card__play">
+                                    <i class="icon ion-ios-play"></i>
+                                </a>
+                            </div>
+                            <div class="card__content">
+                                <h3 class="card__title"><a href="/pages/movie/<%= movies[i].id %>"><%= movies[i].name %></a></h3>
+                                <span class="card__category">
+                                    <a href="#"><%= movies[i].genre %></a>
+                                </span>
+                                <span class="card__rate"><i class="icon ion-ios-star"></i><%= movies[i].users_rating %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
 				<!-- end card -->
 
 				<!-- paginator -->
 				<div class="col-12">
-					<ul class="paginator paginator--list">
+					<ul class="paginator">
 						<li class="paginator__item paginator__item--prev">
 							<a href="#"><i class="icon ion-ios-arrow-back"></i></a>
 						</li>
@@ -125,7 +106,7 @@
 	<!-- end catalog -->
 
 	<!-- expected premiere -->
-	<section class="section section--bg" data-bg="../public/img/section/section.jpg">
+	<section class="section section--bg" data-bg="/public/img/section/section.jpg">
 		<div class="container">
 			<div class="row">
 				<!-- section title -->
@@ -138,7 +119,7 @@
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
-							<img src="../public/img/covers/cover.jpg" alt="">
+							<img src="/public/img/covers/cover.jpg" alt="">
 							<a href="#" class="card__play">
 								<i class="icon ion-ios-play"></i>
 							</a>
@@ -159,7 +140,7 @@
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
-							<img src="../public/img/covers/cover3.jpg" alt="">
+							<img src="/public/img/covers/cover3.jpg" alt="">
 							<a href="#" class="card__play">
 								<i class="icon ion-ios-play"></i>
 							</a>
@@ -179,7 +160,7 @@
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
-							<img src="../public/img/covers/cover2.jpg" alt="">
+							<img src="/public/img/covers/cover2.jpg" alt="">
 							<a href="#" class="card__play">
 								<i class="icon ion-ios-play"></i>
 							</a>
@@ -201,7 +182,7 @@
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
-							<img src="../public/img/covers/cover6.jpg" alt="">
+							<img src="/public/img/covers/cover6.jpg" alt="">
 							<a href="#" class="card__play">
 								<i class="icon ion-ios-play"></i>
 							</a>
@@ -222,7 +203,7 @@
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
-							<img src="../public/img/covers/cover4.jpg" alt="">
+							<img src="/public/img/covers/cover4.jpg" alt="">
 							<a href="#" class="card__play">
 								<i class="icon ion-ios-play"></i>
 							</a>
@@ -243,7 +224,7 @@
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
-							<img src="../public/img/covers/cover5.jpg" alt="">
+							<img src="/public/img/covers/cover5.jpg" alt="">
 							<a href="#" class="card__play">
 								<i class="icon ion-ios-play"></i>
 							</a>
@@ -277,8 +258,8 @@
 				<div class="col-12 col-md-3">
 					<h6 class="footer__title">Download Our App</h6>
 					<ul class="footer__app">
-						<li><a href="#"><img src="../public/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-						<li><a href="#"><img src="../public/img/google-play-badge.png" alt=""></a></li>
+						<li><a href="#"><img src="/public/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
+						<li><a href="#"><img src="/public/img/google-play-badge.png" alt=""></a></li>
 					</ul>
 				</div>
 				<!-- end footer list -->
@@ -339,18 +320,18 @@
 	<!-- end footer -->
 
 	<!-- JS -->
-	<script src="../public/js/jquery-3.3.1.min.js"></script>
-	<script src="../public/js/bootstrap.bundle.min.js"></script>
-	<script src="../public/js/owl.carousel.min.js"></script>
-	<script src="../public/js/jquery.mousewheel.min.js"></script>
-	<script src="../public/js/jquery.mCustomScrollbar.min.js"></script>
-	<script src="../public/js/wNumb.js"></script>
-	<script src="../public/js/nouislider.min.js"></script>
-	<script src="../public/js/plyr.min.js"></script>
-	<script src="../public/js/jquery.morelines.min.js"></script>
-	<script src="../public/js/photoswipe.min.js"></script>
-	<script src="../public/js/photoswipe-ui-default.min.js"></script>
-	<script src="../public/js/main.js"></script>
+	<script src="/public/js/jquery-3.3.1.min.js"></script>
+	<script src="/public/js/bootstrap.bundle.min.js"></script>
+	<script src="/public/js/owl.carousel.min.js"></script>
+	<script src="/public/js/jquery.mousewheel.min.js"></script>
+	<script src="/public/js/jquery.mCustomScrollbar.min.js"></script>
+	<script src="/public/js/wNumb.js"></script>
+	<script src="/public/js/nouislider.min.js"></script>
+	<script src="/public/js/plyr.min.js"></script>
+	<script src="/public/js/jquery.morelines.min.js"></script>
+	<script src="/public/js/photoswipe.min.js"></script>
+	<script src="/public/js/photoswipe-ui-default.min.js"></script>
+	<script src="/public/js/main.js"></script>
 </body>
 
 </html>

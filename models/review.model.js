@@ -1,9 +1,13 @@
 // models/review.model.js
 import { Schema, model } from 'mongoose';
 const reviewSchema = new Schema({
+    title: {
+        type: String,
+        max: 256
+    },
     description: {
         type: String,
-        max: 2048
+        max: 10240
     },
     rating: {
         type: Number

@@ -3,18 +3,22 @@ const router = Router();
 import Movie from '../models/movie.model.js';
 import User from '../models/user.model.js';
 import verifyToken from '../middlewares/auth.middleware.js';
+import Jsonwebtoken from 'jsonwebtoken';
+import JWT_SECRET from '../app.js';
 
 router.post('/', verifyToken, async (req, res) => {
     try {
-        const { name, description, image, genre, release_year, users_rating } = req.body;
+        const { name, description, image, release_year, genre } = req.body;
         if (!name) {
             throw { message: "Name cannot be empty!" };
         }
+        // var genre = Array.isArray(req.body.genre) ? req.body.genre : [req.body.genre];
         const userId = req.userId
         const user = await User.findById(userId);
-        const movie = new Movie({ name, description, image, genre, release_year, users_rating, user });
+        const movie = new Movie({ name, description, image, genre, release_year, user });
         await movie.save();
-        res.status(201).json({ message: 'Movie added successfully' });
+        res.redirect('/admin/');
+        // res.status(201).json({ message: 'Movie added successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Movie addition failed, ' + error.message });
     }
@@ -22,6 +26,16 @@ router.post('/', verifyToken, async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
+        const token = req.cookies.token;
+        var isLogin = false;
+        var user;
+        if(token){
+            const decoded = Jsonwebtoken.verify(token, JWT_SECRET);
+            const userId = decoded.userId;
+            user = await User.findById(userId);
+            isLogin = userId ? true: false;
+        }
+
         const genre = req.query.genre;
         const releaseYearMax = req.query.releaseYearMax;
         const rateMax = req.query.rateMax;
@@ -50,13 +64,15 @@ router.get('/', async (req, res) => {
         if(rateMax){
             filter.users_rating.$lte = rateMax;
         }
-
-        console.log(filter);
-
-        // const filter = { release_year: { $gte: releaseYearMin, $lte: releaseYearMax }, users_rating: { $gte: rateMin, $lte: rateMax } };
         
         const movies = await Movie.find(filter);
-        res.status(200).json({ message: movies });
+        res.render('movie_search', {
+            subject: 'MovieReview - ',
+            movies: movies,
+            isLogin: isLogin,
+            user: user
+        });
+        // res.status(200).json({ message: movies });
     } catch (error) {
         res.status(500).json({ error: 'Movies retriving failed, ' + error.message });
     }

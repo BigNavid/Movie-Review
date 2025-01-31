@@ -28,7 +28,7 @@
 <body class="body">
 	
 	<!-- header -->
-	<%- include('./partials/nav'); %>
+	<%- include('../partials/nav'); %>
 	<!-- end header -->
 
 	<!-- details -->
@@ -90,12 +90,16 @@
 					<div class="details__wrap">
 						<!-- availables -->
 						<div class="details__devices">
-							<span class="details__devices-title">Available on devices:</span>
+							<span class="details__devices-title">Admin Actions:</span>
 							<ul class="details__devices-list">
-								<li><i class="icon ion-logo-apple"></i><span>IOS</span></li>
-								<li><i class="icon ion-logo-android"></i><span>Android</span></li>
-								<li><i class="icon ion-logo-windows"></i><span>Windows</span></li>
-								<li><i class="icon ion-md-tv"></i><span>Smart TV</span></li>
+                                <form action="/admin/movie/edit/<%= movie._id %>" method="get" style="margin-right: 20px;">
+                                    <button type="submit"><li><i class="icon ion-md-create"></i><span>Edit</span></li></button>
+                                </form>
+								<form action="/admin/movie/delete" method="post">
+                                    <button type="submit"><li><i class="icon ion-md-trash"></i><span>Delete</span></li></button>
+                                    <input type="hidden" value="<%= movie._id %>" name="movieId">
+                                </form>
+								
 							</ul>
 						</div>
 						<!-- end availables -->
@@ -202,17 +206,6 @@
                                             <% } %>
 										</ul>
 
-										<form action="/review" method="post" class="form">
-											<input name="title" type="text" class="form__input" placeholder="Title">
-											<textarea name="description" class="form__textarea" placeholder="Review"></textarea>
-											<div class="form__slider">
-												<div class="form__slider-rating" id="slider__rating"></div>
-												<div class="form__slider-value" id="form__slider-value"></div>
-												<input type="hidden" name="rating" id="form__rating-value">
-											</div>
-											<input type="hidden" name="movieId" value=<%= movie._id %>>
-											<button type="submit" class="form__btn">Send</button>
-										</form>
 									</div>
 								</div>
 								<!-- end reviews -->

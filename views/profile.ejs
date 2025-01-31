@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="/public/css/main.css">
 
 	<title>
-        <%= subject %> <%= movie.name %>
+        <%= subject %> Profile
     </title>
 
 </head>
@@ -42,7 +42,7 @@
 			<div class="row">
 				<!-- title -->
 				<div class="col-12">
-					<h1 class="details__title"><%= movie.name %></h1>
+					<h1 class="details__title"><%= user.nickname %></h1>
 				</div>
 				<!-- end title -->
 
@@ -53,7 +53,7 @@
 							<!-- card cover -->
 							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
 								<div class="card__cover">
-									<img src="data:image/jpeg;base64,<%= movie.image %>" alt="">
+									<img src="data:image/jpeg;base64,<%= user.avatar %>" alt="">
 								</div>
 							</div>
 							<!-- end card cover -->
@@ -61,23 +61,9 @@
 							<!-- card content -->
 							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
 								<div class="card__content">
-									<div class="card__wrap">
-										<span class="card__rate"><i class="icon ion-ios-star"></i><%= movie.users_rating %></span>
-
-										<ul class="card__list">
-											<li>HD</li>
-											<li>16+</li>
-										</ul>
-									</div>
-
 									<ul class="card__meta">
-										<li><span>Genre:</span> <a href="#"><%= movie.genre %></a>
-										<li><span>Release year:</span> <%= movie.release_year %></li>
+										<li><span>Email:</span> <a href="mailto:<%= user.email %>"><%= user.email %></a>
 									</ul>
-
-									<div class="card__description card__description--details">
-										<%= movie.description %>
-									</div>
 								</div>
 							</div>
 							<!-- end card content -->
@@ -127,43 +113,8 @@
 				<div class="row">
 					<div class="col-12">
 						<!-- content title -->
-						<h2 class="content__title">Discover</h2>
+						<h2 class="content__title">Reviews</h2>
 						<!-- end content title -->
-
-						<!-- content tabs nav -->
-						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
-							<li class="nav-item">
-								<!-- <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a> -->
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Reviews</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Photos</a>
-							</li>
-						</ul>
-						<!-- end content tabs nav -->
-
-						<!-- content mobile tabs nav -->
-						<div class="content__mobile-tabs" id="content__mobile-tabs">
-							<div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<input type="button" value="Comments">
-								<span></span>
-							</div>
-
-							<div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
-								<ul class="nav nav-tabs" role="tablist">
-									<!-- <li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a></li> -->
-
-									<li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Reviews</a></li>
-
-									<li class="nav-item"><a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Photos</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- end content mobile tabs nav -->
 					</div>
 				</div>
 			</div>
@@ -186,7 +137,7 @@
                                                     <div class="reviews__autor">
                                                         <img class="reviews__avatar" src="/public/img/user.png" alt="">
                                                         <span class="reviews__name"><%= reviews[i].title %></span>
-                                                        <span class="reviews__time"><%= reviews[i].created.getDate() %>.<%= reviews[i].created.getMonth()+ 1 %>.<%= reviews[i].created.getFullYear() %>, <%= reviews[i].created.getHours() %>:<%= reviews[i].created.getMinutes() %> by <%= users[i].nickname %></span>
+                                                        <span class="reviews__time"><%= reviews[i].created.getDate() %>.<%= reviews[i].created.getMonth()+ 1 %>.<%= reviews[i].created.getFullYear() %>, <%= reviews[i].created.getHours() %>:<%= reviews[i].created.getMinutes() %> by <%= user.nickname %></span>
 
                                                         <span class="reviews__rating"><i class="icon ion-ios-star"></i><%= reviews[i].rating %></span>
                                                     </div>
@@ -197,88 +148,18 @@
     
                                                             <button type="button">13<i class="icon ion-md-thumbs-down"></i></button>
                                                         </div>
+														<a href="/pages/movie/<%= reviews[i].movie._id %>">
+															<button type="button"><i class="icon ion-ios-film"></i>Movie</button>
+														</a>
                                                     </div>
                                                 </li>
                                             <% } %>
 										</ul>
 
-										<form action="/review" method="post" class="form">
-											<input name="title" type="text" class="form__input" placeholder="Title">
-											<textarea name="description" class="form__textarea" placeholder="Review"></textarea>
-											<div class="form__slider">
-												<div class="form__slider-rating" id="slider__rating"></div>
-												<div class="form__slider-value" id="form__slider-value"></div>
-												<input type="hidden" name="rating" id="form__rating-value">
-											</div>
-											<input type="hidden" name="movieId" value=<%= movie._id %>>
-											<button type="submit" class="form__btn">Send</button>
-										</form>
 									</div>
 								</div>
 								<!-- end reviews -->
 							</div>
-						</div>
-
-						<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
-							<!-- project gallery -->
-							<div class="gallery" itemscope>
-								<div class="row">
-									<!-- gallery item -->
-									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="/public/img/gallery/project-1.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="/public/img/gallery/project-1.jpg" itemprop="thumbnail" alt="Image description" />
-										</a>
-										<figcaption itemprop="caption description">Some image caption 1</figcaption>
-									</figure>
-									<!-- end gallery item -->
-
-									<!-- gallery item -->
-									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="/public/img/gallery/project-2.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="/public/img/gallery/project-2.jpg" itemprop="thumbnail" alt="Image description" />
-										</a>
-										<figcaption itemprop="caption description">Some image caption 2</figcaption>
-									</figure>
-									<!-- end gallery item -->
-
-									<!-- gallery item -->
-									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="/public/img/gallery/project-3.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="/public/img/gallery/project-3.jpg" itemprop="thumbnail" alt="Image description" />
-										</a>
-										<figcaption itemprop="caption description">Some image caption 3</figcaption>
-									</figure>
-									<!-- end gallery item -->
-
-									<!-- gallery item -->
-									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="/public/img/gallery/project-4.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="/public/img/gallery/project-4.jpg" itemprop="thumbnail" alt="Image description" />
-										</a>
-										<figcaption itemprop="caption description">Some image caption 4</figcaption>
-									</figure>
-									<!-- end gallery item -->
-
-									<!-- gallery item -->
-									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="/public/img/gallery/project-5.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="/public/img/gallery/project-5.jpg" itemprop="thumbnail" alt="Image description" />
-										</a>
-										<figcaption itemprop="caption description">Some image caption 5</figcaption>
-									</figure>
-									<!-- end gallery item -->
-
-									<!-- gallery item -->
-									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="/public/img/gallery/project-6.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="/public/img/gallery/project-6.jpg" itemprop="thumbnail" alt="Image description" />
-										</a>
-										<figcaption itemprop="caption description">Some image caption 6</figcaption>
-									</figure>
-									<!-- end gallery item -->
-								</div>
-							</div>
-							<!-- end project gallery -->
 						</div>
 					</div>
 					<!-- end content tabs -->

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Font -->
+	<!-- Font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet"> 
 
 	<!-- CSS -->
@@ -19,50 +20,53 @@
 	<link rel="stylesheet" href="/public/css/default-skin.css">
 	<link rel="stylesheet" href="/public/css/main.css">
 
-  <title>
-    <%= subject %>
-  </title>
+	<title>
+        <%= subject %>
+    </title>
+
 </head>
+<body class="body">
 
-<body>
-
-  <div class="sign section--bg" data-bg="/public/img/section/section.jpg">
+	<div class="sign section--bg" data-bg="/public/img/section/section.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="sign__content">
-						<!-- authorization form -->
-						<form action="/auth/login" method="post" class="sign__form">
+						<!-- registration form -->
+						<form action="/auth/signup" method="post" class="sign__form">
 							<a href="/pages" class="sign__logo">
 								<img src="/public/img/logo.svg" alt="">
 							</a>
 
 							<div class="sign__group">
-								<input type="text" name="email" class="sign__input" placeholder="Email">
+								<input name="nickname" type="text" class="sign__input" placeholder="NickName">
 							</div>
 
 							<div class="sign__group">
-								<input type="password" name="password" class="sign__input" placeholder="Password">
+								<input name="email" type="text" class="sign__input" placeholder="Email" required>
+							</div>
+
+							<div class="sign__group">
+								<input name="password" type="password" class="sign__input" placeholder="Password" required>
 							</div>
 
 							<div class="sign__group sign__group--checkbox">
-								<input id="remember" name="remember" type="checkbox" checked="checked">
-								<label for="remember">Remember Me</label>
+								<input id="agreed" name="agreed" type="checkbox" checked="checked">
+								<label for="agreed">I agree to the <a href="#">Privacy Policy</a></label>
 							</div>
 							
-							<button class="sign__btn" type="submit">Sign in</button>
+							<button class="sign__btn" type="submit">Sign up</button>
 
-							<span class="sign__text">Don't have an account? <a href="/pages/signup">Sign up!</a></span>
-
-							<span class="sign__text"><a href="#">Forgot password?</a></span>
+							<span class="sign__text">Already have an account? <a href="/pages/login">Sign in!</a></span>
 						</form>
-						<!-- end authorization form -->
+						<!-- registration form -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<!-- JS -->
 	<script src="/public/js/jquery-3.3.1.min.js"></script>
 	<script src="/public/js/bootstrap.bundle.min.js"></script>
 	<script src="/public/js/owl.carousel.min.js"></script>
@@ -75,7 +79,6 @@
 	<script src="/public/js/photoswipe.min.js"></script>
 	<script src="/public/js/photoswipe-ui-default.min.js"></script>
 	<script src="/public/js/main.js"></script>
-
 </body>
 
 </html>
