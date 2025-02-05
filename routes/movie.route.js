@@ -36,6 +36,8 @@ router.get('/', async (req, res) => {
             isLogin = userId ? true: false;
         }
 
+        const isAdmin = user.role == 'admin' ? true: false;
+
         const genre = req.query.genre;
         const releaseYearMax = req.query.releaseYearMax;
         const rateMax = req.query.rateMax;
@@ -64,12 +66,14 @@ router.get('/', async (req, res) => {
         if(rateMax){
             filter.users_rating.$lte = rateMax;
         }
-        
+
         const movies = await Movie.find(filter);
+
         res.render('movie_search', {
             subject: 'MovieReview - ',
             movies: movies,
             isLogin: isLogin,
+            isAdmin: isAdmin,
             user: user
         });
         // res.status(200).json({ message: movies });
