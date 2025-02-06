@@ -19,7 +19,7 @@ router.post('/', verifyToken, async (req, res) => {
         await review.save();
 
         const new_number_of_users_rating = number_of_users_rating + 1;
-        const new_users_rating = (number_of_users_rating * users_rating + rating) / new_number_of_users_rating;
+        const new_users_rating = (number_of_users_rating * users_rating + Number(rating)) / new_number_of_users_rating;
         const update = {users_rating: new_users_rating, number_of_users_rating: new_number_of_users_rating};
         await Movie.findByIdAndUpdate(movieId, update);
         res.redirect('/pages/movie/'+movieId);

@@ -163,13 +163,13 @@
 															<%= reviews[i].description %>
 														</p>
 														<div class="comments__actions">
-															<form action="/admin/review/update" method="post" class="comments__rate">
+															<form action="/admin/review/update/approved" method="post" class="comments__rate">
 																<% if(reviews[i].status !='approved' ){%>
-																	<button class="comments__rate_button_first" type="submit" onclick="document.getElementById('status').value = 'approved'"><i class="icon ion-md-checkmark comments__rate_i_first"></i></button>
+																	<button class="comments__rate_button_first" type="submit"><i class="icon ion-md-checkmark comments__rate_i_first"></i></button>
 																<% } %>
 
 																<% if(reviews[i].status !='declined' ){%>
-																	<button class="comments__rate_button_last" type="submit" onclick="document.getElementById('status').value = 'declined'"><i class="icon ion-md-close comments__rate_i_last"></i></button>
+																	<button class="comments__rate_button_last" type="submit" formaction="/admin/review/update/declined"><i class="icon ion-md-close comments__rate_i_last"></i></button>
 																<% } %>
 																<input type="hidden" name="reviewId" value="<%= reviews[i]._id %>">
 																<input id="status" type="hidden" name="status" value="pendding">

@@ -168,13 +168,28 @@ router.get('/reviews', verifyAdminToken, async (req, res) => {
 
 });
 
-router.post('/review/update', verifyAdminToken, async (req, res) => {
+router.post('/review/update/approved', verifyAdminToken, async (req, res) => {
     try {
         const userId = req.userId;
         const isLogin = userId ? true : false;
 
         const reviewId = req.body.reviewId;
-        const status = req.body.status;
+        const status = 'approved';
+        await Review.findByIdAndUpdate(reviewId, { status: status });
+        res.redirect('/admin/reviews');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
+});
+
+router.post('/review/update/declined', verifyAdminToken, async (req, res) => {
+    try {
+        const userId = req.userId;
+        const isLogin = userId ? true : false;
+
+        const reviewId = req.body.reviewId;
+        const status = 'declined';
         await Review.findByIdAndUpdate(reviewId, { status: status });
         res.redirect('/admin/reviews');
     } catch (error) {

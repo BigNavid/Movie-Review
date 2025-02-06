@@ -116,7 +116,7 @@ router.get('/profile/:id', verifyToken, async (req, res) => {
         const friendship = await Friendship.find({ from: from, to: to });
         const isFriend = friendship.length ? true : false;
         const isLogin = userId ? true : false;
-        const isAdmin = user.role == 'admin' ? true: false;
+        const isAdmin = from.role == 'admin' ? true: false;
         const reviews = await Review.find({ user: to });
         res.render('profile_id', {
             subject: 'MovieReview - ',
